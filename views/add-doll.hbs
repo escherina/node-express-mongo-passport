@@ -1,0 +1,67 @@
+<h2>Add a doll</h2>
+<form action="/add/doll">
+
+  <fieldset>
+    <legend>Basic information</legend>
+    <p>
+      <label for="doll-name">Name</label>
+      <input type="text" id="doll-name" name="doll-name" required>
+    </p>
+    <!-- <p>
+      <label for="doll-image">Image</label>
+      <input type="file" id="doll-image" name="doll-image" accept="image/gif,image/jpeg,image/jpg,image/png">
+    </p> -->
+  </fieldset>
+
+  <fieldset>
+    <legend>Doll specifications</legend>
+    <p>My doll is:</p>
+    <p>
+      <input type="radio" name="doll-type" id="doll-same" checked><label for="doll-same">all from the same company</label>
+    </p>
+    <p>
+      <input type="radio" name="doll-type" id="doll-mixed"><label for="doll-mixed">a mixture of parts</label>
+    </p>
+    <p>
+      <label for="company-doll">Doll manufacturer</label>
+      <input type="text" id="company-doll" name="company-doll">
+    </p>
+    <p class="hidden">
+      <label for="company-doll-head">Doll head manufacturer</label>
+      <input type="text" id="company-doll-head" name="company-doll-head" disabled>
+    </p>
+  </fieldset>
+
+
+  <button type="submit">Add doll</button>
+</form>
+
+<script type="text/javascript">
+  const radioDollSame = document.querySelector('#doll-same')
+  const radioDollMixed = document.querySelector('#doll-mixed')
+  const labelDollSame = document.querySelector('label[for="company-doll"]')
+  const inputDollHead = document.querySelector('#company-doll-head')
+
+  radioDollSame.addEventListener('click', e => {
+    if(radioDollSame.checked) {
+      inputDollHead.disabled = true
+      labelDollSame.textContent = 'Doll manufacturer'
+      inputDollHead.parentNode.classList.toggle('hidden')
+    }
+  })
+  radioDollMixed.addEventListener('click', e => {
+    if(radioDollMixed.checked) {
+      inputDollHead.disabled = false
+      labelDollSame.textContent = 'Doll body manufacturer'
+      inputDollHead.parentNode.classList.toggle('hidden')
+    }
+  })
+
+</script>
+
+<style media="screen">
+  .hidden {
+    visibility: hidden;
+    display: none;
+  }
+</style>
